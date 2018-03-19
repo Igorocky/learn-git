@@ -1,0 +1,23 @@
+#!/bin/sh
+
+REPONAME=$1
+
+if [ -z "$REPONAME" ]; then
+    echo "error: no arg"
+    exit 1
+fi
+
+rm -r ./$REPONAME
+mkdir ./$REPONAME
+
+mkdir $REPONAME/dir1
+echo text1 > $REPONAME/dir1/file1
+echo text2 > $REPONAME/dir1/file2
+mkdir $REPONAME/dir2
+echo text1 > $REPONAME/dir2/file1
+echo text2 > $REPONAME/dir2/file2
+
+cd ./$REPONAME
+
+git init
+git status
