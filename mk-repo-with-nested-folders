@@ -7,19 +7,24 @@ if [ -z "$REPONAME" ]; then
     exit 1
 fi
 
+echo "removing old repo"
 rm -r ./$REPONAME
-mkdir ./$REPONAME
 
-mkdir -p $REPONAME/dir1/dir3
-echo text1 > $REPONAME/dir1/file1
-echo text2 > $REPONAME/dir1/file2
-echo text1 > $REPONAME/dir1/dir3/file1
-echo text2 > $REPONAME/dir1/dir3/file2
-mkdir $REPONAME/dir2
-echo text1 > $REPONAME/dir2/file1
-echo text2 > $REPONAME/dir2/file2
+echo "creating new dir structure"
+mkdir ./$REPONAME
 
 cd ./$REPONAME
 
+mkdir -p ./dir1/dir3
+echo text1 > ./dir1/file1
+echo text2 > ./dir1/file2
+echo text1 > ./dir1/dir3/file1
+echo text2 > ./dir1/dir3/file2
+mkdir ./dir2
+echo text1 > ./dir2/file1
+echo text2 > ./dir2/file2
+
+echo "initiating new git repo"
 git init
+echo "print status"
 git status
