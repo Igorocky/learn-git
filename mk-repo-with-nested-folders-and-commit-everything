@@ -1,0 +1,35 @@
+#!/bin/sh
+
+REPONAME=$1
+
+if [ -z "$REPONAME" ]; then
+    echo "error: no arg"
+    exit 1
+fi
+
+echo "removing old repo"
+rm -r ./$REPONAME
+
+echo "creating new dir structure"
+mkdir ./$REPONAME
+
+cd ./$REPONAME
+
+mkdir -p ./dir1/dir3
+echo text1 > ./dir1/file1
+echo text2 > ./dir1/file2
+echo text1 > ./dir1/dir3/file1
+echo text2 > ./dir1/dir3/file2
+mkdir ./dir2
+echo text1 > ./dir2/file1
+echo text2 > ./dir2/file2
+
+echo "initiating new git repo"
+git init
+echo "print status"
+git status
+
+echo "commiting"
+
+git add dir1 dir2
+git commit -m "initial commit"
